@@ -3,8 +3,7 @@
 #include <string>
 
 
-int main()
-{
+int main() {
 
     std::string password = "top_secret";
 
@@ -12,8 +11,8 @@ int main()
 
     std::cout << "Hash: " << hash << std::endl;
 
-    std::cout << "\"" << password << "\" : " << bcrypt::validatePassword(password,hash) << std::endl;
-    std::cout << "\"wrong\" : " << bcrypt::validatePassword("wrong",hash) << std::endl;
+    std::cout << "\"" << password << "\" : " << bcrypt::validatePassword(password, hash) << std::endl;
+    std::cout << "\"wrong\" : " << bcrypt::validatePassword("wrong", hash) << std::endl;
 
     return 0;
 }
