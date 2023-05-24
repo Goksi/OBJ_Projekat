@@ -5,10 +5,16 @@
 #include <fstream>
 
 class Serializable {
+protected:
+    int id;
 public:
+    explicit Serializable(int);
+
     virtual void Serialize(std::ostream &stream) = 0;
 
     virtual void Deserialize(std::istream &stream) = 0;
+
+    int GetId() const;
 };
 
 

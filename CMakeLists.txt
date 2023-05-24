@@ -11,7 +11,11 @@ add_executable(OBJ_Projekat
         src/managers/AbstractManager.cpp
         src/exceptions/FileException.cpp
         src/entities/Korisnik.cpp
-        )
+        src/utils/MiscUtils.cpp
+        src/managers/KorisnikManager.cpp
+        src/exceptions/NotFoundException.cpp
+        src/exceptions/AuthException.cpp
+        src/abstract/Serializable.cpp src/abstract/Manager.h)
 
 target_include_directories(OBJ_Projekat
         PRIVATE src/exceptions
