@@ -4,9 +4,10 @@
 using namespace std;
 
 template<class T>
-void SerializationUtils::Serialize(const vector<T> vector, const string &fileName) {
+void SerializationUtils::Serialize(int lastId, const vector<T> vector, const string &fileName) {
     ofstream file(fileName, ios::binary | ios::trunc);
     if (!file.is_open()) throw FileException();
+    file.write(reinterpret_cast<const char *>(lastId), sizeof(int));
     size_t size = vector.size();
     file.write(reinterpret_cast<const char *>(&size), sizeof(size));
 
@@ -17,9 +18,10 @@ void SerializationUtils::Serialize(const vector<T> vector, const string &fileNam
 }
 
 template<class T>
-void SerializationUtils::Deserialize(vector<T> &vector, const string &fileName) {
+void SerializationUtils::Deserialize(int &lastId, vector<T> &vector, const string &fileName) {
     ifstream file(fileName, ios::binary);
     if (!file.is_open()) throw FileException("Fajl za deserializaciju nije pronadjen !");
+    file.read(reinterpret_cast<char *>(&lastId), sizeof(int));
     size_t size;
     file.read(reinterpret_cast<char *>(&size), sizeof(size));
 

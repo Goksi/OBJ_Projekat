@@ -9,10 +9,13 @@ vector<T> AbstractManager<T>::GetList() const {
 }
 
 template<class T>
-typename vector<T>::iterator *AbstractManager<T>::GetById(int id) const {
+typename vector<T>::iterator AbstractManager<T>::GetById(int id) const {
     auto iter = find_if(list.begin(), list.end(), [&id](const T &current) { return current.GetId() == id; });
-    return iter != list.cend() ? iter : nullptr;
+    return iter;
 }
+
+template<class T>
+int AbstractManager<T>::lastId = 1;
 
 template<class T>
 void AbstractManager<T>::Delete(int id) {
@@ -26,5 +29,19 @@ void AbstractManager<T>::Delete(int id) {
 
 template<class T>
 void AbstractManager<T>::Save() {
-    SerializationUtils::Serialize(list, GetFileName());
+    SerializationUtils::Serialize(lastId, list, GetFileName());
+}
+
+template<class T>
+AbstractManager<T>::AbstractManager(T defValue) {
+    try {
+        SerializationUtils::Deserialize(lastId, list, GetFileName());
+    } catch (FileException &e) {
+        if (defValue != nullptr) list.push_back(defValue);
+    }
+}
+
+template<class T>
+bool AbstractManager<T>::IsValidIter(typename vector<T>::iterator iter) {
+    return iter != list.cend();
 }

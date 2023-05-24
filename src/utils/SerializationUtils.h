@@ -11,10 +11,10 @@
 class SerializationUtils {
 public:
     template<class T>
-    static void Serialize(std::vector<T> vector, const std::string &fileName);
+    static void Serialize(int lastId, std::vector<T> vector, const std::string &fileName);
 
     template<class T>
-    static void Deserialize(std::vector<T> &vector, const std::string &fileName);
+    static void Deserialize(int &lastId, std::vector<T> &vector, const std::string &fileName);
 
 private:
     SerializationUtils() = default;
