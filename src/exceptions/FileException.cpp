@@ -9,7 +9,7 @@
 
 FileException::FileException() {
     message = "Greska pri otvaranju fajla !";
-};
+}
 
 const char *FileException::what() const noexcept {
     return message.c_str();

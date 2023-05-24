@@ -8,6 +8,7 @@
 #include <string>
 #include "bcrypt.h"
 #include "Serializable.h"
+#include "MiscUtils.h"
 
 using namespace std;
 enum TipKorisnika {
@@ -23,13 +24,21 @@ private:
     string hashedPassword;
     TipKorisnika tipKorisnika;
 public:
+    Korisnik() = default;
+
+    Korisnik(int, string, string, string, const string &, TipKorisnika);
+
     bool TryLogin(const string &password);
 
     bool IsAdmin();
 
+    string GetUsername() const;
+
     void Serialize(std::ostream &stream) override;
 
     void Deserialize(std::istream &stream) override;
+
+    bool operator==(const Korisnik &other);
 };
 
 
