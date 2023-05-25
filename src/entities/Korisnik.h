@@ -35,6 +35,8 @@ public:
 
     [[nodiscard]] string GetUsername() const;
 
+    [[nodiscard]] string GetFullIme() const;
+
     void Serialize(std::ostream &stream) const override;
 
     void Deserialize(std::istream &stream) override;

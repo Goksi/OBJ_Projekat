@@ -12,7 +12,7 @@ Serializable::Serializable(int id) {
 }
 
 void Serializable::Serialize(std::ostream &stream) const {
-    stream << id;
+    stream.write(reinterpret_cast<const char *>(&id), sizeof(id));
 }
 
 void Serializable::Deserialize(std::istream &stream) {

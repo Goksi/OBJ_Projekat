@@ -20,11 +20,19 @@ void Korisnik::Serialize(ostream &stream) const {
     size_t prezimeSize = prezime.size();
     size_t passSize = hashedPassword.size();
 
-    stream << usernameSize << username;
-    stream << imeSize << ime;
-    stream << prezimeSize << prezime;
-    stream << passSize << hashedPassword;
-    stream << tipKorisnika;
+    stream.write(reinterpret_cast<const char *>(&usernameSize), sizeof(usernameSize));
+    stream.write(username.data(), (long long) usernameSize);
+
+    stream.write(reinterpret_cast<const char *>(&imeSize), sizeof(imeSize));
+    stream.write(ime.data(), (long long) imeSize);
+
+    stream.write(reinterpret_cast<const char *>(&prezimeSize), sizeof(prezimeSize));
+    stream.write(prezime.data(), (long long) prezimeSize);
+
+    stream.write(reinterpret_cast<const char *>(&passSize), sizeof(passSize));
+    stream.write(hashedPassword.data(), (long long) passSize);
+
+    stream.write(reinterpret_cast<const char *>(&tipKorisnika), sizeof(TipKorisnika));
 }
 
 void Korisnik::Deserialize(istream &stream) {
@@ -57,4 +65,8 @@ string Korisnik::GetUsername() const {
 
 bool Korisnik::operator==(const Korisnik &other) {
     return username == other.username && Serializable::id == other.GetId();
+}
+
+string Korisnik::GetFullIme() const {
+    return ime + " " + prezime;
 }
