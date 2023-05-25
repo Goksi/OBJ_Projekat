@@ -3,6 +3,7 @@
 //
 
 #include "Korisnik.h"
+#include <iostream>
 
 bool Korisnik::IsAdmin() {
     return this->tipKorisnika == TipKorisnika::ADMIN;
@@ -12,7 +13,8 @@ bool Korisnik::TryLogin(const string &password) {
     return bcrypt::validatePassword(password, hashedPassword);
 }
 
-void Korisnik::Serialize(ostream &stream) {
+void Korisnik::Serialize(ostream &stream) const {
+    Serializable::Serialize(stream);
     size_t usernameSize = username.size();
     size_t imeSize = ime.size();
     size_t prezimeSize = prezime.size();
@@ -26,6 +28,7 @@ void Korisnik::Serialize(ostream &stream) {
 }
 
 void Korisnik::Deserialize(istream &stream) {
+    Serializable::Deserialize(stream);
     this->username = MiscUtils::ReadString(stream);
     this->ime = MiscUtils::ReadString(stream);
     this->prezime = MiscUtils::ReadString(stream);
@@ -42,6 +45,10 @@ Korisnik::Korisnik(int id, string username, string ime, string prezime, const st
     this->prezime = std::move(prezime);
     this->hashedPassword = bcrypt::generateHash(password);
     this->tipKorisnika = tipKorisnika;
+}
+
+Korisnik::Korisnik() : Serializable(-1) {
+    this->tipKorisnika = TipKorisnika::UNDEFINED;
 }
 
 string Korisnik::GetUsername() const {

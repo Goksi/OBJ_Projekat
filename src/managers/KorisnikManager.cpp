@@ -5,10 +5,11 @@
 #include "KorisnikManager.h"
 
 
-/*TODO: handle ids*/
-KorisnikManager::KorisnikManager() : AbstractManager<Korisnik>(
-        Korisnik(AbstractManager<Korisnik>::lastId, "admin", "Vukasin", "Lekic", "maca1234", TipKorisnika::ADMIN)) {
-
+/*TODO: ne radi zbog templejta, naci kako da hendlujem*/
+KorisnikManager::KorisnikManager() {
+    AbstractManager<Korisnik>::init(
+            {Korisnik(lastId++, "admin", "Vukasin", "Lekic", "maca1234",
+                      TipKorisnika::ADMIN)});
 }
 
 string KorisnikManager::GetFileName() const {

@@ -12,6 +12,7 @@
 
 using namespace std;
 enum TipKorisnika {
+    UNDEFINED = -1,
     KLIJENT = 0,
     ADMIN = 1,
 };
@@ -24,7 +25,7 @@ private:
     string hashedPassword;
     TipKorisnika tipKorisnika;
 public:
-    Korisnik() = default;
+    Korisnik();
 
     Korisnik(int, string, string, string, const string &, TipKorisnika);
 
@@ -32,9 +33,9 @@ public:
 
     bool IsAdmin();
 
-    string GetUsername() const;
+    [[nodiscard]] string GetUsername() const;
 
-    void Serialize(std::ostream &stream) override;
+    void Serialize(std::ostream &stream) const override;
 
     void Deserialize(std::istream &stream) override;
 

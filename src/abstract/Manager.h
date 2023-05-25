@@ -11,6 +11,8 @@ public:
     virtual void Save() = 0;
 
     virtual void Delete(int) = 0;
+
+    virtual ~Manager() = default;
 };
 
 

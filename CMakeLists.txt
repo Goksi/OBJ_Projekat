@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.23)
 project(OBJ_Projekat)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 
 add_executable(OBJ_Projekat
         src/main.cpp
-        src/utils/SerializationUtils.cpp
         src/abstract/Serializable.h
         src/managers/AbstractManager.cpp
         src/exceptions/FileException.cpp

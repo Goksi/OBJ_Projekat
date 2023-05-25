@@ -10,3 +10,13 @@ int Serializable::GetId() const {
 Serializable::Serializable(int id) {
     this->id = id;
 }
+
+void Serializable::Serialize(std::ostream &stream) const {
+    stream << id;
+}
+
+void Serializable::Deserialize(std::istream &stream) {
+    int idFromFile;
+    stream.read(reinterpret_cast<char *>(&idFromFile), sizeof(idFromFile));
+    this->id = idFromFile;
+}

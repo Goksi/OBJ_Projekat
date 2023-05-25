@@ -10,11 +10,11 @@ protected:
 public:
     explicit Serializable(int);
 
-    virtual void Serialize(std::ostream &stream) = 0;
+    virtual void Serialize(std::ostream &stream) const;
 
-    virtual void Deserialize(std::istream &stream) = 0;
+    virtual void Deserialize(std::istream &stream);
 
-    int GetId() const;
+    [[nodiscard]] int GetId() const;
 };
 
 

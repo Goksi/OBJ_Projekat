@@ -3,6 +3,7 @@
 //
 
 #include "MiscUtils.h"
+#include <iostream>
 
 std::string MiscUtils::ReadString(std::istream &stream) {
     size_t len;
