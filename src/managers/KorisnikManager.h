@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <optional>
 #include "AuthException.h"
+#include "KorisnikExistException.h"
 
 class KorisnikManager : public AbstractManager<Korisnik> {
 protected:
@@ -18,9 +19,13 @@ protected:
 public:
     KorisnikManager();
 
-    vector<Korisnik>::iterator FindByUsername(const string &);
+    vector<Korisnik>::iterator FindByUsername(string);
 
     Korisnik &TryLogin(const string &, const string &);
+
+    void
+    AddKorisnik(const string &, const string &, const string &, const string &,
+                const TipKorisnika & = TipKorisnika::KLIJENT);
 };
 
 
