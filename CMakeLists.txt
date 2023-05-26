@@ -14,14 +14,16 @@ add_executable(OBJ_Projekat
         src/managers/KorisnikManager.cpp
         src/exceptions/NotFoundException.cpp
         src/exceptions/AuthException.cpp
-        src/abstract/Serializable.cpp src/abstract/Manager.h)
+        src/abstract/Serializable.cpp src/abstract/Manager.h src/commands/AbstractCommand.cpp src/commands/AbstractCommand.h src/commands/CommandHandler.cpp src/commands/CommandHandler.h src/commands/main/LoginCommand.cpp src/commands/main/LoginCommand.h src/commands/main/RegisterCommand.cpp src/commands/main/RegisterCommand.h src/exceptions/KorisnikExistException.h)
 
 target_include_directories(OBJ_Projekat
         PRIVATE src/exceptions
         PRIVATE src/utils
         PRIVATE src/managers
         PRIVATE src/entities
-        PRIVATE src/abstract)
+        PRIVATE src/abstract
+        PRIVATE src/commands
+        PRIVATE src/commands/main)
 
 add_subdirectory(lib)
 target_link_libraries(OBJ_Projekat bcrypt)
