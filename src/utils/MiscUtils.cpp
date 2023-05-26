@@ -4,6 +4,7 @@
 
 #include "MiscUtils.h"
 #include <iostream>
+#include <sstream>
 
 std::string MiscUtils::ReadString(std::istream &stream) {
     size_t len;
@@ -11,4 +12,15 @@ std::string MiscUtils::ReadString(std::istream &stream) {
     std::string str(len, '\0');
     stream.read(&str[0], (long long) len);
     return str;
+}
+
+/*TODO: ne zaboravi da obrises, DINAMICKI JE !*/
+std::queue<std::string> *MiscUtils::SplitString(const std::string &str, char delimiter) {
+    auto queue = new std::queue<std::string>();
+    std::string temp;
+    std::stringstream ss(str);
+    while (std::getline(ss, temp, delimiter)) {
+        queue->push(temp);
+    }
+    return queue;
 }

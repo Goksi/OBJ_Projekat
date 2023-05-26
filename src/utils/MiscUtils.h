@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <string>
+#include <queue>
 
 class MiscUtils {
 private:
@@ -15,6 +16,8 @@ private:
 
 public:
     static std::string ReadString(std::istream &stream);
+
+    static std::queue<std::string> *SplitString(const std::string &, char = ' ');
 };
 
 
