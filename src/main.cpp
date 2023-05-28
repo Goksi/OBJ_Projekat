@@ -4,12 +4,13 @@
 #include "CommandHandler.h"
 #include "LoginCommand.h"
 #include "RegisterCommand.h"
+#include "HotelManager.h"
 
 using namespace std;
 
 vector<Manager *> managers;
 
-CommandHandler mainHandler;
+CommandHandler mainHandler("mainHandler");
 
 void setupManagers(vector<Manager *> &m);
 
@@ -42,4 +43,5 @@ int main() {
 
 void setupManagers(vector<Manager *> &m) {
     m.push_back(new KorisnikManager());
+    m.push_back(new HotelManager());
 }

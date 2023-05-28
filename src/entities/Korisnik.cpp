@@ -5,7 +5,7 @@
 #include "Korisnik.h"
 #include <iostream>
 
-bool Korisnik::IsAdmin() {
+bool Korisnik::IsAdmin() const {
     return this->tipKorisnika == TipKorisnika::ADMIN;
 }
 
@@ -63,10 +63,34 @@ string Korisnik::GetUsername() const {
     return username;
 }
 
+string Korisnik::GetIme() const {
+    return ime;
+}
+
+string Korisnik::GetPrezime() const {
+    return prezime;
+}
+
 bool Korisnik::operator==(const Korisnik &other) {
     return username == other.username && Serializable::id == other.GetId();
 }
 
 string Korisnik::GetFullIme() const {
     return ime + " " + prezime;
+}
+
+void Korisnik::setIme(const string &i) {
+    this->ime = i;
+}
+
+void Korisnik::setPrezime(const string &p) {
+    this->prezime = p;
+}
+
+void Korisnik::setPassword(const string &password) {
+    this->hashedPassword = bcrypt::generateHash(password);
+}
+
+void Korisnik::setTipKorisnika(TipKorisnika tip) {
+    this->tipKorisnika = tip;
 }

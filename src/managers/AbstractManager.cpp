@@ -1,6 +1,7 @@
 
 #include "AbstractManager.h"
 #include "Korisnik.h"
+#include "Hotel.h"
 
 using namespace std;
 
@@ -49,3 +50,6 @@ bool AbstractManager<T>::IsValidIter(typename vector<T>::const_iterator iter) {
 
 template
 class AbstractManager<Korisnik>;
+
+template
+class AbstractManager<Hotel>;

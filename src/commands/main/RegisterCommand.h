@@ -14,7 +14,7 @@ private:
     KorisnikManager *manager;
 public:
     explicit RegisterCommand(KorisnikManager *manager) : AbstractCommand("register",
-                                                                         "Komanda sluzi za registrovanje novih naloga !") { this->manager = manager; }
+                                                                         "Cli za registrovanje novih naloga !") { this->manager = manager; }
 
     void Execute(queue<string> *args) override;
 
