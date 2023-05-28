@@ -11,6 +11,7 @@
 #include <optional>
 #include "AuthException.h"
 #include "KorisnikExistException.h"
+#include "Table.h"
 
 class KorisnikManager : public AbstractManager<Korisnik> {
 protected:
@@ -26,6 +27,8 @@ public:
     void
     AddKorisnik(const string &, const string &, const string &, const string &,
                 const TipKorisnika & = TipKorisnika::KLIJENT);
+
+    void PrintResult() override;
 };
 
 

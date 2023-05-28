@@ -7,6 +7,7 @@
 #include "Manager.h"
 #include <algorithm>
 #include <optional>
+#include <functional>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ protected:
     void init(std::optional<T> = nullopt);
 
 public:
+
     vector<T> GetList() const;
 
     typename vector<T>::const_iterator GetById(int) const;
@@ -31,6 +33,8 @@ public:
     void Delete(int) override;
 
     bool IsValidIter(typename vector<T>::const_iterator);
+
+    virtual void PrintResult() = 0;
 };
 
 #endif //OBJ_PROJEKAT_ABSTRACTMANAGER_H

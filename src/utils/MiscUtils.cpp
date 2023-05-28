@@ -14,7 +14,6 @@ std::string MiscUtils::ReadString(std::istream &stream) {
     return str;
 }
 
-/*TODO: ne zaboravi da obrises, DINAMICKI JE !*/
 std::queue<std::string> *MiscUtils::SplitString(const std::string &str, char delimiter) {
     auto queue = new std::queue<std::string>();
     std::string temp;
