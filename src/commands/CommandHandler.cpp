@@ -6,7 +6,13 @@
 
 using namespace std;
 
-CommandHandler::CommandHandler(map<string, AbstractCommand *> cmd) : commands(std::move(cmd)) {}
+CommandHandler::CommandHandler(const string &ime, map<string, AbstractCommand *> cmd) : commands(std::move(cmd)) {
+    this->ime = ime;
+}
+
+CommandHandler::CommandHandler(const std::string &ime) {
+    this->ime = ime;
+}
 
 CommandHandler::~CommandHandler() {
     for (const auto &entry: commands) {
@@ -54,4 +60,8 @@ void CommandHandler::PrintHelp() {
     for (auto pair: commands) {
         pair.second->PrintHelpCommand();
     }
+}
+
+string CommandHandler::getIme() const {
+    return ime;
 }

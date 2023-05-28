@@ -16,20 +16,24 @@ using namespace std;
 
 class CommandHandler {
 private:
+    string ime;
+
     map<string, AbstractCommand *> commands;
 
     void PrintHelp();
 
 public:
-    CommandHandler() = default;
+    explicit CommandHandler(const string &);
 
-    explicit CommandHandler(map<string, AbstractCommand *>);
+    CommandHandler(const string &, map<string, AbstractCommand *>);
 
     ~CommandHandler();
 
     void ListenStdin();
 
     void AddCommand(const string &, AbstractCommand *);
+
+    [[nodiscard]] string getIme() const;
 };
 
 

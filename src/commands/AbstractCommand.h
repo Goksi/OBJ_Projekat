@@ -17,7 +17,7 @@ private:
     string name;
     string description;
 protected:
-    map<string, function<void(queue<string>)>> subcommands;
+    map<string, function<void(queue<string> *)>> subcommands;
 public:
     AbstractCommand(string, string);
 
