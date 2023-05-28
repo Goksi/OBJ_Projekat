@@ -9,6 +9,9 @@
 #include <fstream>
 #include <string>
 #include <queue>
+#include "Smestaj.h"
+
+class Smestaj; // Glupi c++
 
 class MiscUtils {
 private:
@@ -18,6 +21,8 @@ public:
     static std::string ReadString(std::istream &stream);
 
     static std::queue<std::string> *SplitString(const std::string &, char = ' ');
+
+    static Smestaj ReadSmestaj(int);
 };
 
 

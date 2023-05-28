@@ -20,6 +20,10 @@ protected:
 public:
     KorisnikManager();
 
+    static int lastId;
+
+    void Save() override;
+
     vector<Korisnik>::iterator FindByUsername(string);
 
     Korisnik &TryLogin(const string &, const string &);

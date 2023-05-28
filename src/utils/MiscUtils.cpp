@@ -23,3 +23,19 @@ std::queue<std::string> *MiscUtils::SplitString(const std::string &str, char del
     }
     return queue;
 }
+
+Smestaj MiscUtils::ReadSmestaj(int lastId) {
+    string naziv;
+    cout << "Unesite ime smestaja: " << endl;
+    getline(cin, naziv);
+    string lokacija;
+    cout << "Unesite lokaciju smestaja: " << endl;
+    getline(cin, lokacija);
+    int cena;
+    cout << "Unesite cenu u dinarima za noc: " << endl;
+    cin >> cena;
+    int kapacitet;
+    cout << "Unesite koliko maksimalno osoba moze da stane u ovaj smestaj: " << endl;
+    cin >> kapacitet;
+    return {lastId, naziv, lokacija, cena, kapacitet};
+}

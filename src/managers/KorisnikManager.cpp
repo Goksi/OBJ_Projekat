@@ -4,11 +4,12 @@
 
 #include "KorisnikManager.h"
 
+int KorisnikManager::lastId = 1;
 
 KorisnikManager::KorisnikManager() {
     AbstractManager<Korisnik>::init(
-            {Korisnik(lastId++, "admin", "Vukasin", "Lekic", "maca1234",
-                      TipKorisnika::ADMIN)});
+            lastId, Korisnik(lastId++, "admin", "Vukasin", "Lekic", "maca1234",
+                             TipKorisnika::ADMIN));
 }
 
 string KorisnikManager::GetFileName() const {
@@ -44,6 +45,10 @@ void KorisnikManager::PrintResult() {
         table.addRow(kor.GetUsername(), kor.GetIme(), kor.GetPrezime(), tip);
     }
     table.print(cout);
+}
+
+void KorisnikManager::Save() {
+    SerializationUtils::Serialize(lastId, list, GetFileName());
 }
 
 

@@ -18,6 +18,10 @@ protected:
     [[nodiscard]] string GetFileName() const override;
 
 public:
+    static int lastId;
+
+    void Save() override;
+
     HotelManager();
 
     vector<Hotel>::iterator FindByName(const string &);
