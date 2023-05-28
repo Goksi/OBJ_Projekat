@@ -108,21 +108,6 @@ void KorisnikCommand::SetupSubcommands() {
     }});
 }
 
-void KorisnikCommand::Execute(queue<string> *args) {
-    if (args->empty()) {
-        PrintHelpCommand();
-        return;
-    }
-    string subcommand = args->front();
-    args->pop();
-    auto iter = subcommands.find(subcommand);
-    if (iter == subcommands.cend()) {
-        PrintHelpCommand();
-        return;
-    }
-    (*iter).second(args);
-}
-
 void KorisnikCommand::PrintHelpCommand() {
     cout << "korisnik list" << " - " << "Prikazuje listu svih registrovanih korisnika !" << endl;
     cout << "korisnik add" << " - " << "Dodavanje novog korisnika !" << endl;

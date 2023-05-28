@@ -16,3 +16,18 @@ string AbstractCommand::GetName() const {
 string AbstractCommand::GetDescription() const {
     return description;
 }
+
+void AbstractCommand::Execute(queue<string> *args) {
+    if (args->empty()) {
+        PrintHelpCommand();
+        return;
+    }
+    string subcommand = args->front();
+    args->pop();
+    auto iter = subcommands.find(subcommand);
+    if (iter == subcommands.cend()) {
+        PrintHelpCommand();
+        return;
+    }
+    (*iter).second(args);
+}

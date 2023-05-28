@@ -23,7 +23,7 @@ public:
 
     virtual ~AbstractCommand() = default;
 
-    virtual void Execute(queue<string> *args) = 0;
+    virtual void Execute(queue<string> *args);
 
     virtual void PrintHelpCommand() = 0;
 

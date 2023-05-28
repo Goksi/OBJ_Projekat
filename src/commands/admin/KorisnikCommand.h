@@ -18,8 +18,6 @@ public:
         SetupSubcommands();
     }
 
-    void Execute(queue<string> *args) override;
-
     void PrintHelpCommand() override;
 
     void SetupSubcommands();
