@@ -18,9 +18,7 @@ protected:
 
     [[nodiscard]] virtual string GetFileName() const = 0;
 
-    static int lastId;
-
-    void init(std::optional<T> = nullopt);
+    void init(int &, std::optional<T> = nullopt);
 
 public:
 
@@ -28,7 +26,7 @@ public:
 
     typename vector<T>::const_iterator GetById(int) const;
 
-    void Save() override;
+    void Save() override = 0;
 
     void Delete(int) override;
 

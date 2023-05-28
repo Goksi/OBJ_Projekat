@@ -17,7 +17,7 @@ void setupManagers(vector<Manager *> &m);
 int main() {
     setupManagers(managers);
     auto *korisnikManager = dynamic_cast<KorisnikManager *>(managers[0]);
-    mainHandler.AddCommand("login", new LoginCommand(korisnikManager));
+    mainHandler.AddCommand("login", new LoginCommand(managers));
     mainHandler.AddCommand("register", new RegisterCommand(korisnikManager));
     cout << R"(
   _   _      _             _         _

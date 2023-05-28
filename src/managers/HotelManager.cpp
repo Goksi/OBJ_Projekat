@@ -8,8 +8,10 @@ string HotelManager::GetFileName() const {
     return "hoteli.bin";
 }
 
+int HotelManager::lastId = 1;
+
 HotelManager::HotelManager() {
-    AbstractManager<Hotel>::init();
+    AbstractManager<Hotel>::init(lastId);
 }
 
 vector<Hotel>::iterator HotelManager::FindByName(const string &name) {
@@ -19,11 +21,11 @@ vector<Hotel>::iterator HotelManager::FindByName(const string &name) {
 }
 
 void HotelManager::PrintResult() {
-    VariadicTable<string, string, int, string, string, float, string> table(
-            {"Naziv", "Lokacija", "Max osoba", "Teretana", "Restoran", "*", "Tip"},
+    VariadicTable<int, string, string, int, string, string, float, string> table(
+            {"ID", "Naziv", "Lokacija", "Max osoba", "Teretana", "Restoran", "*", "Tip"},
             12);
     for (const Hotel &hotel: list) {
-        table.addRow(hotel.GetName(), hotel.GetLokacija(), hotel.GetKapacitet(), hotel.GetTeretanaText(),
+        table.addRow(hotel.GetId(), hotel.GetName(), hotel.GetLokacija(), hotel.GetKapacitet(), hotel.GetTeretanaText(),
                      hotel.GetRestoranText(), hotel.GetStars(), Hotel::GetByType(hotel.GetType()));
     }
     table.print(cout);
@@ -33,4 +35,8 @@ void HotelManager::AddHotel(const Smestaj &smestaj, TipHotela tipHotela, bool te
     auto iter = FindByName(smestaj.GetName());
     if (AbstractManager<Hotel>::IsValidIter(iter)) throw SmestajExistException();
     list.emplace_back(smestaj, tipHotela, teretana, restoran);
+}
+
+void HotelManager::Save() {
+    SerializationUtils::Serialize(lastId, list, GetFileName());
 }

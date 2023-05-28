@@ -17,9 +17,6 @@ template<class T>
 }
 
 template<class T>
-int AbstractManager<T>::lastId = 1;
-
-template<class T>
 void AbstractManager<T>::Delete(int id) {
     list.erase(remove_if(
             list.begin(), list.end(),
@@ -30,12 +27,7 @@ void AbstractManager<T>::Delete(int id) {
 }
 
 template<class T>
-void AbstractManager<T>::Save() {
-    SerializationUtils::Serialize(lastId, list, GetFileName());
-}
-
-template<class T>
-void AbstractManager<T>::init(optional<T> defValue) {
+void AbstractManager<T>::init(int &lastId, optional<T> defValue) {
     try {
         SerializationUtils::Deserialize(lastId, list, GetFileName());
     } catch (FileException &e) {
