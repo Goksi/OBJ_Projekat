@@ -3,6 +3,7 @@
 //
 
 #include "LoginCommand.h"
+#include "KorisnikCommand.h"
 
 void LoginCommand::PrintHelpCommand() {
     cout << "login <username> - Logovanje na korisnicki/admin panel" << endl;
@@ -20,8 +21,17 @@ void LoginCommand::Execute(queue<string> *args) {
     cin >> password;
     try {
         Korisnik &korisnik = manager->TryLogin(username, password);
-        cout << "Uspesno ste ulogovani kao " << korisnik.GetFullIme() << ", prebacujemo vas na "
-             << (korisnik.IsAdmin() ? "admin" : "korisnicki") << " panel !";
+        cout << "Uspesno ste ulogovani kao " << korisnik.GetFullIme() << ", dobrodosli na "
+             << (korisnik.IsAdmin() ? "admin" : "korisnicki") << " panel !" << endl;
+        if (korisnik.IsAdmin()) {
+            CommandHandler handler("admin");
+            handler.AddCommand("korisnik", new KorisnikCommand(manager));
+            handler.ListenStdin();
+        } else {
+            CommandHandler handler("klijent");
+
+            handler.ListenStdin();
+        }
     } catch (AuthException &err) {
         cout << "Pogresno korisnicko ime ili lozinka, pokusajte ponovo !" << endl;
     }

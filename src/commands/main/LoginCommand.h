@@ -10,6 +10,7 @@
 #include "KorisnikManager.h"
 #include "Korisnik.h"
 #include "AuthException.h"
+#include "CommandHandler.h"
 
 class LoginCommand : public AbstractCommand {
 private:

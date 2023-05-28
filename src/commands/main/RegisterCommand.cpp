@@ -5,7 +5,7 @@
 #include "RegisterCommand.h"
 
 void RegisterCommand::PrintHelpCommand() {
-    cout << "register - Cli za registrovanje novih naloga" << endl;
+    cout << this->GetName() << " - " << this->GetDescription() << endl;
 }
 
 void RegisterCommand::Execute(queue<string> *args) {
