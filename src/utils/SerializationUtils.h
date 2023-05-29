@@ -24,8 +24,7 @@ public:
         }
         file.close();
     }
-
-    /*TOOD: ovde problem sa citanjem*/
+    
     template<class T>
     static void Deserialize(int &lastId, std::vector<T> &vector, const std::string &fileName) {
         ifstream file(fileName, ios::binary);

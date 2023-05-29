@@ -21,11 +21,11 @@ vector<Hotel>::iterator HotelManager::FindByName(const string &name) {
 }
 
 void HotelManager::PrintResult() {
-    VariadicTable<int, string, string, int, string, string, float, string> table(
-            {"ID", "Naziv", "Lokacija", "Max osoba", "Teretana", "Restoran", "*", "Tip"},
+    VariadicTable<int, string, string, int, int, string, string, float, string> table(
+            {"ID", "Naziv", "Lokacija", "Cena za noc", "Max osoba", "Teretana", "Restoran", "*", "Tip"},
             12);
     for (const Hotel &hotel: list) {
-        table.addRow(hotel.GetId(), hotel.GetName(), hotel.GetLokacija(), hotel.GetKapacitet(), hotel.GetTeretanaText(),
+        table.addRow(hotel.GetId(), hotel.GetName(), hotel.GetLokacija(), hotel.GetCena(), hotel.GetKapacitet(), hotel.GetTeretanaText(),
                      hotel.GetRestoranText(), hotel.GetStars(), Hotel::GetByType(hotel.GetType()));
     }
     table.print(cout);
@@ -35,6 +35,7 @@ void HotelManager::AddHotel(const Smestaj &smestaj, TipHotela tipHotela, bool te
     auto iter = FindByName(smestaj.GetName());
     if (AbstractManager<Hotel>::IsValidIter(iter)) throw SmestajExistException();
     list.emplace_back(smestaj, tipHotela, teretana, restoran);
+    lastId++;
 }
 
 void HotelManager::Save() {

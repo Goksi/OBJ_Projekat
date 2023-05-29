@@ -27,8 +27,7 @@ public:
     vector<Hotel>::iterator FindByName(const string &);
 
     void AddHotel(const Smestaj &, TipHotela, bool, bool);
-
-
+    
     void PrintResult() override;
 };
 

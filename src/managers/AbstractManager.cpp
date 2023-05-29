@@ -2,6 +2,7 @@
 #include "AbstractManager.h"
 #include "Korisnik.h"
 #include "Hotel.h"
+#include "Apartman.h"
 
 using namespace std;
 
@@ -45,3 +46,6 @@ class AbstractManager<Korisnik>;
 
 template
 class AbstractManager<Hotel>;
+
+template
+class AbstractManager<Apartman>;
