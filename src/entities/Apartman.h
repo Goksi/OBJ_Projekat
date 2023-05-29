@@ -17,6 +17,12 @@ public:
 
     Apartman(Smestaj, bool, bool, int);
 
+    [[nodiscard]] string HaveTerasa() const;
+
+    [[nodiscard]] string HaveKuhinja() const;
+
+    [[nodiscard]] int GetBrojSoba() const;
+
     void Serialize(std::ostream &stream) const override;
 
     void Deserialize(std::istream &stream) override;

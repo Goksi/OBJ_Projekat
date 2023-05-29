@@ -30,3 +30,15 @@ Apartman::Apartman(Smestaj smestaj, bool terasa, bool kuhinja, int brojSoba) : S
     this->kuhinja = kuhinja;
     this->brojSoba = brojSoba;
 }
+
+string Apartman::HaveTerasa() const {
+    return terasa ? "DA" : "NE";
+}
+
+string Apartman::HaveKuhinja() const {
+    return kuhinja ? "DA" : "NE";
+}
+
+int Apartman::GetBrojSoba() const {
+    return brojSoba;
+}

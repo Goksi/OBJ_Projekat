@@ -81,3 +81,7 @@ float Smestaj::GetStars() const {
     return starRating;
 }
 
+int Smestaj::GetCena() const {
+    return cenaZaNoc;
+}
+

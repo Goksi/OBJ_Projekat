@@ -36,6 +36,8 @@ public:
 
     [[nodiscard]] int GetKapacitet() const;
 
+    [[nodiscard]] int GetCena() const;
+
     [[nodiscard]] float GetStars() const;
 
     bool operator==(const Smestaj &other);

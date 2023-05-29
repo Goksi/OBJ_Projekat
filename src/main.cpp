@@ -5,6 +5,7 @@
 #include "LoginCommand.h"
 #include "RegisterCommand.h"
 #include "HotelManager.h"
+#include "ApartmanManager.h"
 
 using namespace std;
 
@@ -44,4 +45,5 @@ int main() {
 void setupManagers(vector<Manager *> &m) {
     m.push_back(new KorisnikManager());
     m.push_back(new HotelManager());
+    m.push_back(new ApartmanManager());
 }

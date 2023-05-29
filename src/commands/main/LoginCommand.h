@@ -12,16 +12,19 @@
 #include "AuthException.h"
 #include "CommandHandler.h"
 #include "HotelManager.h"
+#include "ApartmanManager.h"
 
 class LoginCommand : public AbstractCommand {
 private:
     KorisnikManager *korisnikManager;
     HotelManager *hotelManager;
+    ApartmanManager *apartmanManager;
 public:
     explicit LoginCommand(vector<Manager *> &managers) : AbstractCommand("login",
                                                                          "Komanda koja sluzi za logovanje (login <username>)") {
         this->korisnikManager = dynamic_cast<KorisnikManager *>(managers[0]);
         this->hotelManager = dynamic_cast<HotelManager *>(managers[1]);
+        this->apartmanManager = dynamic_cast<ApartmanManager *>(managers[2]);
     }
 
     void Execute(queue<string> *args) override;
