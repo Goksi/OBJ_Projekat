@@ -5,6 +5,7 @@
 #include "LoginCommand.h"
 #include "KorisnikCommand.h"
 #include "HotelCommand.h"
+#include "ApartmanCommand.h"
 
 void LoginCommand::PrintHelpCommand() {
     cout << "login <username> - Logovanje na korisnicki/admin panel" << endl;
@@ -28,10 +29,12 @@ void LoginCommand::Execute(queue<string> *args) {
             CommandHandler handler("admin");
             handler.AddCommand("korisnik", new KorisnikCommand(korisnikManager));
             handler.AddCommand("hotel", new HotelCommand(handler.getIme(), hotelManager));
+            handler.AddCommand("apartman", new ApartmanCommand(handler.getIme(), apartmanManager));
             handler.ListenStdin();
         } else {
             CommandHandler handler("klijent");
             handler.AddCommand("hotel", new HotelCommand(handler.getIme(), hotelManager));
+            handler.AddCommand("apartman", new ApartmanCommand(handler.getIme(), apartmanManager));
             handler.ListenStdin();
         }
     } catch (AuthException &err) {
