@@ -21,7 +21,20 @@ void ApartmanCommand::PrintHelpCommand() {
 
 void ApartmanCommand::SetupSubcommands() {
     subcommands.insert({"list", [this](queue<string> *args) {
-        manager->PrintResult();
+        if (args->empty()) {
+            manager->AbstractManager<Apartman>::PrintResult();
+        } else {
+            string filter = args->front();
+            args->pop();
+            if (filter == "cena") {
+                vector<Apartman> copy = manager->GetList();
+                sort(copy.begin(), copy.end(), [](const Apartman &prvi, const Apartman &drugi) {
+                    return prvi.GetCena() < drugi.GetCena();
+                });
+                manager->PrintResult(copy);
+            } else cout << "Nevazeci filter !" << endl;
+        }
+
     }});
     if (!admin) return;
     subcommands.insert({"add", [this](queue<string> *args) {

@@ -12,7 +12,19 @@ HotelCommand::HotelCommand(const string &ime, HotelManager *manager) : AbstractC
 
 void HotelCommand::SetupSubcommands() {
     subcommands.insert({"list", [this](queue<string> *args) {
-        manager->PrintResult();
+        if (args->empty()) {
+            manager->AbstractManager<Hotel>::PrintResult();
+        } else {
+            string filter = args->front();
+            args->pop();
+            if (filter == "cena") {
+                vector<Hotel> copy = manager->GetList();
+                sort(copy.begin(), copy.end(), [](const Hotel &prvi, const Hotel &drugi) {
+                    return prvi.GetCena() < drugi.GetCena();
+                });
+                manager->PrintResult(copy);
+            } else cout << "Nevazeci filter !" << endl;
+        }
     }});
     if (!admin) return;
     subcommands.insert({"add", [this](queue<string> *args) {
