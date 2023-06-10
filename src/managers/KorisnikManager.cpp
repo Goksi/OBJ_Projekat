@@ -38,9 +38,9 @@ KorisnikManager::AddKorisnik(const string &username, const string &ime, const st
     list.emplace_back(lastId++, username, ime, prezime, password, tipKorisnika);
 }
 
-void KorisnikManager::PrintResult() {
+void KorisnikManager::PrintResult(vector<Korisnik> &lista) {
     VariadicTable<string, string, string, string> table({"Username", "Ime", "Prezime", "Tip"}, 10);
-    for (const Korisnik &kor: list) {
+    for (const Korisnik &kor: lista) {
         string tip = kor.IsAdmin() ? "Admin" : "Klijent";
         table.addRow(kor.GetUsername(), kor.GetIme(), kor.GetPrezime(), tip);
     }

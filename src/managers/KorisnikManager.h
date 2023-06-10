@@ -32,7 +32,7 @@ public:
     AddKorisnik(const string &, const string &, const string &, const string &,
                 const TipKorisnika & = TipKorisnika::KLIJENT);
 
-    void PrintResult() override;
+    void PrintResult(vector<Korisnik> &) override;
 };
 
 

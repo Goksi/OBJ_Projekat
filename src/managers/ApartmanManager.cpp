@@ -6,11 +6,12 @@
 #include "Table.h"
 #include "SmestajExistException.h"
 
-void ApartmanManager::PrintResult() {
+void ApartmanManager::PrintResult(vector<Apartman> &lista) {
     VariadicTable<int, string, string, int, int, string, string, int, float> table(
             {"ID", "Naziv", "Lokacija", "Cena za noc", "Max osoba", "Terasa", "Kuhinja", "Broj soba", "*"},
             12);
-    for (const Apartman &apartman: list) {
+    table.setColumnPrecision({1, 1, 1, 1, 1, 1, 1, 1, 3});
+    for (const Apartman &apartman: lista) {
         table.addRow(apartman.GetId(), apartman.GetName(), apartman.GetLokacija(), apartman.GetCena(), apartman.GetKapacitet(),
                      apartman.HaveTerasa(),
                      apartman.HaveKuhinja(), apartman.GetBrojSoba(), apartman.GetStars());

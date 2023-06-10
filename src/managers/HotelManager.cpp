@@ -20,11 +20,12 @@ vector<Hotel>::iterator HotelManager::FindByName(const string &name) {
     return iter;
 }
 
-void HotelManager::PrintResult() {
+void HotelManager::PrintResult(vector<Hotel> &lista) {
     VariadicTable<int, string, string, int, int, string, string, float, string> table(
             {"ID", "Naziv", "Lokacija", "Cena za noc", "Max osoba", "Teretana", "Restoran", "*", "Tip"},
             12);
-    for (const Hotel &hotel: list) {
+    table.setColumnPrecision({1, 1, 1, 1, 1, 1, 1, 3, 1});
+    for (const Hotel &hotel: lista) {
         table.addRow(hotel.GetId(), hotel.GetName(), hotel.GetLokacija(), hotel.GetCena(), hotel.GetKapacitet(), hotel.GetTeretanaText(),
                      hotel.GetRestoranText(), hotel.GetStars(), Hotel::GetByType(hotel.GetType()));
     }

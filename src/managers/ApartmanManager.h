@@ -23,8 +23,8 @@ public:
     vector<Apartman>::iterator FindByName(const string &);
 
     void AddApartman(const Smestaj &, bool, bool, int);
-    
-    void PrintResult() override;
+
+    void PrintResult(vector<Apartman> &) override;
 };
 
 

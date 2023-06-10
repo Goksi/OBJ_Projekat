@@ -32,7 +32,9 @@ public:
 
     bool IsValidIter(typename vector<T>::const_iterator);
 
-    virtual void PrintResult() = 0;
+    virtual void PrintResult(vector<T> &list) = 0;
+
+    void PrintResult() { PrintResult(list); }
 };
 
 #endif //OBJ_PROJEKAT_ABSTRACTMANAGER_H

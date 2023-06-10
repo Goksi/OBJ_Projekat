@@ -6,7 +6,7 @@
 
 void KorisnikCommand::SetupSubcommands() {
     subcommands.insert({"list", [this](queue<string> *args) {
-        manager->PrintResult();
+        manager->AbstractManager<Korisnik>::PrintResult();
     }});
 
     subcommands.insert({"add", [this](queue<string> *args) {
