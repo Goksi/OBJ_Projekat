@@ -3,6 +3,7 @@
 //
 
 #include "Smestaj.h"
+#include <iostream>
 
 Smestaj::Smestaj(int id, const string &ime, const string &lokacija, int cenaZaNoc, int kapacitet, int recenzije,
                  float starRating) : Serializable(id) {
@@ -15,7 +16,10 @@ Smestaj::Smestaj(int id, const string &ime, const string &lokacija, int cenaZaNo
 }
 
 float Smestaj::DodajZvezdicu(int brojZvezdica) {
-    this->starRating = (this->starRating * (float) recenzije + (float) brojZvezdica) / (float) recenzije + 1;
+    float current = this->starRating * static_cast<float>(recenzije);
+    float novo = current + static_cast<float>(brojZvezdica);
+    float finalRating = novo / (static_cast<float>(recenzije) + 1.0f);
+    this->starRating = finalRating;
     recenzije++;
     return starRating;
 }

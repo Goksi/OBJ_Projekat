@@ -22,7 +22,7 @@ private:
 public:
     Smestaj();
 
-    Smestaj(int, const string &, const string &, int, int, int = 0, float = 0);
+    Smestaj(int, const string &, const string &, int, int, int = 0, float = 0.0);
 
     float DodajZvezdicu(int);
 
